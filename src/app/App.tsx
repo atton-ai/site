@@ -206,9 +206,18 @@ export default function App() {
             <p style={{ fontSize: '1.1rem', fontWeight: '600', lineHeight: '1.45', color: 'var(--text)', marginBottom: '0.3em' }}>AI makes it easy to act.</p>
             <p style={{ fontSize: '1.1rem', fontWeight: '600', lineHeight: '1.45', color: 'var(--text)', marginBottom: '1.4em' }}>It doesn't make it easy to think.</p>
 
-            <p style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--text-secondary)', marginBottom: '0.8em' }}>Speed without structure just accelerates confusion.</p>
-            <p style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--text-secondary)', marginBottom: '0.8em' }}>I design how people and systems think before they act.</p>
-            <p style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--text-secondary)' }}>From there, I architect and build AI systems that actually work.</p>
+            <p style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--text-secondary)', marginBottom: '0.3em' }}>Most organisations move straight from "we should use AI" to implementation.</p>
+            <p style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--text-secondary)', marginBottom: '0.3em' }}>They automate what they haven't examined,</p>
+            <p style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--text-secondary)', marginBottom: '0.3em' }}>accelerate decisions they haven't structured,</p>
+            <p style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--text-secondary)', marginBottom: '1.4em' }}>then wonder why the output is garbage.</p>
+
+            <p style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--text-secondary)', marginBottom: '0.3em' }}>I start with the layer before the system.</p>
+            <p style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--text-secondary)', marginBottom: '1.4em' }}>The thinking, the structure, the constraints that make AI useful.</p>
+
+            <p style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--text-secondary)', marginBottom: '1.4em' }}>Then I build.</p>
+
+            <p style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--text-secondary)', marginBottom: '0.3em' }}>If you want to plug in a tool and call it transformation, I'm not that.</p>
+            <p style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--text-secondary)' }}>If you want it to actually work, we should talk.</p>
           </div>
         </div>
 
