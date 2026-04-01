@@ -68,7 +68,7 @@ export function ChatModule() {
       >
         <span 
           style={{ 
-            fontSize: '1.05rem',
+            fontSize: '1.15rem',
             fontWeight: '800',
             letterSpacing: '-0.01em',
             color: 'var(--text)'
@@ -103,13 +103,13 @@ export function ChatModule() {
             }`}
             style={{
               lineHeight: '1.65',
-              color: msg.type === 'system' 
-                ? 'var(--text-tertiary)' 
-                : msg.type === 'user' 
-                ? 'var(--text)' 
+              color: msg.type === 'system'
+                ? 'var(--text-secondary)'
+                : msg.type === 'user'
+                ? 'var(--text)'
                 : 'var(--text-secondary)',
               fontFamily: msg.type === 'system' ? 'var(--font-mono)' : 'var(--font-body)',
-              fontSize: msg.type === 'system' ? '0.78rem' : '0.87rem',
+              fontSize: msg.type === 'system' ? '0.87rem' : '0.93rem',
               fontWeight: msg.type === 'user' ? '500' : 'normal',
               maxWidth: '88%'
             }}
@@ -159,11 +159,21 @@ export function ChatModule() {
         )}
       </div>
       
-      <div className="flex flex-col px-[28px]">
-        <div 
-          className="flex gap-[10px] items-center py-[16px]"
-          style={{ 
-            borderTop: 'var(--border-w) solid var(--border)'
+      <div
+        className="mx-[20px] mb-[20px]"
+        style={{
+          border: 'var(--border-w) solid var(--border)',
+          borderRadius: '2px',
+          background: 'rgba(0,0,0,0.01)',
+          padding: '14px',
+        }}
+      >
+        <div
+          className="flex items-stretch border border-[var(--border)] focus-within:border-[var(--text-secondary)] transition-[border-color] duration-150"
+          style={{
+            borderRadius: '2px',
+            background: 'var(--bg)',
+            marginBottom: '12px',
           }}
         >
           <input
@@ -172,25 +182,24 @@ export function ChatModule() {
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Ask anything…"
-            className="flex-1 outline-none py-[8px] px-[12px]"
+            className="flex-1 outline-none py-[14px] px-[14px] bg-transparent placeholder:text-[var(--text-secondary)]"
             style={{
-              border: '1px solid var(--border)',
-              borderRadius: '2px',
-              background: 'var(--bg)',
+              border: 'none',
               fontFamily: 'var(--font-body)',
-              fontSize: '0.87rem',
-              color: 'var(--text)'
+              fontSize: '1rem',
+              color: 'var(--text)',
             }}
             autoComplete="off"
           />
           <button
             onClick={handleSend}
-            className="border-none cursor-pointer px-3 py-[8px] transition-colors"
+            className="cursor-pointer px-4 transition-colors"
             style={{
               background: 'transparent',
+              borderLeft: 'var(--border-w) solid var(--border)',
               fontFamily: 'var(--font-mono)',
-              fontSize: '0.8rem',
-              color: 'var(--text-secondary)'
+              fontSize: '0.85rem',
+              color: 'var(--text-secondary)',
             }}
             onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text)'}
             onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
@@ -198,13 +207,12 @@ export function ChatModule() {
             ↵
           </button>
         </div>
-        <div 
+        <div
           style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '0.72rem',
+            fontSize: '0.76rem',
             color: 'var(--text-tertiary)',
-            paddingBottom: '16px',
-            lineHeight: '1.5'
+            lineHeight: '1.5',
           }}
         >
           You can explore freely. After a few messages, you'll be asked for your email.

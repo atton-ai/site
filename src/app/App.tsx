@@ -94,15 +94,13 @@ export default function App() {
             borderBottom: 'var(--border-w) solid var(--border)'
           }}
         >
-          <a 
+          <a
             href="#"
-            className="no-underline hover:underline after:content-['_↗'] after:text-[0.75em] after:opacity-50"
-            style={{ 
-              color: 'var(--text)',
-              textDecorationOffset: '3px'
-            }}
+            className="no-underline group inline-flex items-baseline gap-[3px]"
+            style={{ color: 'var(--text)' }}
           >
-            LinkedIn
+            <span className="transition-transform duration-150 ease-out group-hover:translate-x-1">LinkedIn</span>
+            <span className="text-[0.75em] opacity-50 transition-transform duration-150 ease-out group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
           </a>
         </div>
         
@@ -113,14 +111,14 @@ export default function App() {
             borderBottom: 'var(--border-w) solid var(--border)'
           }}
         >
-          <a 
+          <a
             href="#"
-            className="no-underline hover:underline after:content-['_↗'] after:text-[0.75em] after:opacity-50"
-            style={{ 
-              color: 'var(--text)',
-              textDecorationOffset: '3px'
-            }}
-          >GitHub</a>
+            className="no-underline group inline-flex items-baseline gap-[3px]"
+            style={{ color: 'var(--text)' }}
+          >
+            <span className="transition-transform duration-150 ease-out group-hover:translate-x-1">GitHub</span>
+            <span className="text-[0.75em] opacity-50 transition-transform duration-150 ease-out group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
+          </a>
         </div>
         
         <div 
@@ -130,15 +128,13 @@ export default function App() {
             borderBottom: 'var(--border-w) solid var(--border)'
           }}
         >
-          <a 
+          <a
             href="#"
-            className="no-underline hover:underline after:content-['_↗'] after:text-[0.75em] after:opacity-50"
-            style={{ 
-              color: 'var(--text)',
-              textDecorationOffset: '3px'
-            }}
+            className="no-underline group inline-flex items-baseline gap-[3px]"
+            style={{ color: 'var(--text)' }}
           >
-            Medium
+            <span className="transition-transform duration-150 ease-out group-hover:translate-x-1">Medium</span>
+            <span className="text-[0.75em] opacity-50 transition-transform duration-150 ease-out group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
           </a>
         </div>
         
@@ -158,8 +154,13 @@ export default function App() {
             borderBottom: 'var(--border-w) solid var(--border)'
           }}
         >
-          <a href="#" className="no-underline hover:underline" style={{ color: 'var(--text)', textDecorationOffset: '3px' }}>
-            ↗ LMA Framework
+          <a
+            href="#"
+            className="no-underline group inline-flex items-baseline gap-[3px]"
+            style={{ color: 'var(--text)' }}
+          >
+            <span className="transition-transform duration-150 ease-out group-hover:translate-x-1">LMA Framework</span>
+            <span className="text-[0.75em] opacity-50 transition-transform duration-150 ease-out group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
           </a>
         </div>
         
@@ -170,8 +171,13 @@ export default function App() {
             borderBottom: 'var(--border-w) solid var(--border)'
           }}
         >
-          <a href="#" className="no-underline hover:underline" style={{ color: 'var(--text)', textDecorationOffset: '3px' }}>
-            ↗ Writing
+          <a
+            href="#"
+            className="no-underline group inline-flex items-baseline gap-[3px]"
+            style={{ color: 'var(--text)' }}
+          >
+            <span className="transition-transform duration-150 ease-out group-hover:translate-x-1">Writing</span>
+            <span className="text-[0.75em] opacity-50 transition-transform duration-150 ease-out group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
           </a>
         </div>
 
@@ -186,29 +192,23 @@ export default function App() {
           <ChatModule />
         </div>
         
-        <div 
-          className="col-span-2 px-[22px] py-5 min-h-14"
+        <div
+          className="col-span-2 px-[22px] py-6 min-h-14"
           style={{
-            fontSize: '0.95rem',
-            lineHeight: '1.6',
-            color: 'var(--text)',
             borderRight: 'var(--border-w) solid var(--border)',
             borderBottom: 'var(--border-w) solid var(--border)'
           }}
         >
           <div style={{
-            fontSize: '0.95rem',
-            lineHeight: '1.6',
-            color: 'var(--text)'
+            borderLeft: '2px solid var(--border)',
+            paddingLeft: '16px',
           }}>
-            <p style={{ marginBottom: '0.5em' }}>AI makes it easy to act.</p>
-            <p style={{ marginBottom: '1.5em' }}>It doesn't make it easy to think.</p>
-            
-            <p style={{ marginBottom: '1.5em' }}>Speed without structure just accelerates confusion.</p>
-            
-            <p style={{ marginBottom: '1.5em' }}>I design how people and systems think before they act.</p>
-            
-            <p>From there, I architect and build AI systems that actually work.</p>
+            <p style={{ fontSize: '1.1rem', fontWeight: '600', lineHeight: '1.45', color: 'var(--text)', marginBottom: '0.3em' }}>AI makes it easy to act.</p>
+            <p style={{ fontSize: '1.1rem', fontWeight: '600', lineHeight: '1.45', color: 'var(--text)', marginBottom: '1.4em' }}>It doesn't make it easy to think.</p>
+
+            <p style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--text-secondary)', marginBottom: '0.8em' }}>Speed without structure just accelerates confusion.</p>
+            <p style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--text-secondary)', marginBottom: '0.8em' }}>I design how people and systems think before they act.</p>
+            <p style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--text-secondary)' }}>From there, I architect and build AI systems that actually work.</p>
           </div>
         </div>
 
@@ -311,7 +311,6 @@ export default function App() {
             title="Founding Users"
             meta="Limited cohort"
             description="Early access to the system. Direct feedback loop."
-            hasArrow={false}
           />
         </div>
         
@@ -326,7 +325,6 @@ export default function App() {
             title="Writing"
             meta="Medium · Essays"
             description="Thinking about AI, identity, and what happens when your industry disappears."
-            hasArrow={false}
           />
         </div>
 

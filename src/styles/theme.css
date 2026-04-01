@@ -1,7 +1,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --font-size: 15px;
+  --font-size: 16px;
   
   /* ATTON.ai theme colors */
   --bg: #f0efed;

@@ -8,10 +8,10 @@ interface ProjectCardProps {
 
 export function ProjectCard({ title, meta, description, hasArrow = true, isPivot = false }: ProjectCardProps) {
   return (
-    <div className="relative" style={{ padding: '4px 0' }}>
+    <div className="relative group cursor-pointer" style={{ padding: '4px 0' }}>
       {hasArrow && (
-        <span 
-          className="absolute"
+        <span
+          className="absolute transition-transform duration-150 ease-out group-hover:translate-x-1 group-hover:-translate-y-1"
           style={{
             top: '18px',
             right: '18px',
@@ -22,7 +22,8 @@ export function ProjectCard({ title, meta, description, hasArrow = true, isPivot
           ↗
         </span>
       )}
-      <div 
+      <div
+        className="transition-transform duration-150 ease-out group-hover:translate-x-1"
         style={{
           fontSize: '1.05rem',
           fontWeight: isPivot ? '800' : '700',
@@ -33,7 +34,7 @@ export function ProjectCard({ title, meta, description, hasArrow = true, isPivot
       >
         {title}
       </div>
-      <div 
+      <div
         style={{
           fontFamily: 'var(--font-mono)',
           fontSize: '0.72rem',
@@ -44,9 +45,9 @@ export function ProjectCard({ title, meta, description, hasArrow = true, isPivot
       >
         {meta}
       </div>
-      <div 
+      <div
         style={{
-          fontSize: '0.87rem',
+          fontSize: '0.93rem',
           color: 'var(--text-secondary)',
           lineHeight: '1.65'
         }}
