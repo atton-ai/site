@@ -15,6 +15,7 @@ export function ChatModule() {
   const [inputValue, setInputValue] = useState('');
   const [msgCount, setMsgCount] = useState(0);
   const [showEmailPrompt, setShowEmailPrompt] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const chatBodyRef = useRef<HTMLDivElement>(null);
   const maxFree = 3;
 
@@ -24,38 +25,46 @@ export function ChatModule() {
     }
   }, [messages]);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     const val = inputValue.trim();
-    if (!val) return;
+    if (!val || isLoading) return;
+
+    const userMsg: Message = { text: val, type: 'user' };
+    const nextMessages = [...messages, userMsg];
+    setMessages(nextMessages);
+    setInputValue('');
 
     const newMsgCount = msgCount + 1;
     setMsgCount(newMsgCount);
-    
-    setMessages(prev => [...prev, { text: val, type: 'user' }]);
-    setInputValue('');
 
     if (newMsgCount > maxFree) {
       setShowEmailPrompt(true);
       return;
     }
 
-    setTimeout(() => {
-      const responses = [
-        "I'm a demonstration of how this system works. The full version maintains context across sessions, adapts to your thinking style, and operates within structured modes — Pivot, Strategist, or Therapeutic Co-pilot.",
-        "The key difference from standard AI chat is persistence. Your context, decisions, and reflections carry forward. Nothing starts from zero.",
-        "If you're navigating a career shift or a complex decision, the system is designed to help you think through it structurally — not to give you generic answers."
-      ];
-      setMessages(prev => [...prev, { 
-        text: responses[Math.min(newMsgCount - 1, responses.length - 1)], 
-        type: 'ai' 
-      }]);
-    }, 800 + Math.random() * 400);
+    setIsLoading(true);
+    try {
+      const apiMessages = nextMessages
+        .filter(m => m.type === 'user' || m.type === 'ai')
+        .map(m => ({ role: m.type === 'user' ? 'user' : 'assistant', content: m.text }));
+
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: apiMessages }),
+      });
+
+      const data = await res.json();
+      setMessages(prev => [...prev, { text: data.reply, type: 'ai' }]);
+    } catch {
+      setMessages(prev => [...prev, { text: 'Something went wrong. Try again.', type: 'ai' }]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSend();
-    }
+    if (e.key === 'Enter') handleSend();
   };
 
   return (
@@ -118,6 +127,17 @@ export function ChatModule() {
           </div>
         ))}
         
+        {isLoading && (
+          <div style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.87rem',
+            color: 'var(--text-tertiary)',
+            letterSpacing: '0.05em',
+          }}>
+            ···
+          </div>
+        )}
+
         {showEmailPrompt && (
           <div 
             className="mt-2"
@@ -182,7 +202,8 @@ export function ChatModule() {
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Ask anything…"
-            className="flex-1 outline-none py-[14px] px-[14px] bg-transparent placeholder:text-[var(--text-secondary)]"
+            disabled={isLoading}
+            className="flex-1 outline-none py-[14px] px-[14px] bg-transparent placeholder:text-[var(--text-secondary)] disabled:opacity-50"
             style={{
               border: 'none',
               fontFamily: 'var(--font-body)',
@@ -193,7 +214,8 @@ export function ChatModule() {
           />
           <button
             onClick={handleSend}
-            className="cursor-pointer px-4 transition-colors"
+            disabled={isLoading}
+            className="cursor-pointer px-4 transition-colors disabled:opacity-40"
             style={{
               background: 'transparent',
               borderLeft: 'var(--border-w) solid var(--border)',

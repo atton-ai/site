@@ -1,14 +1,19 @@
 interface ProjectCardProps {
   title: string;
+  href?: string | null;
   meta: string;
   description: string;
   hasArrow?: boolean;
   isPivot?: boolean;
 }
 
-export function ProjectCard({ title, meta, description, hasArrow = true, isPivot = false }: ProjectCardProps) {
+export function ProjectCard({ title, href, meta, description, hasArrow = true, isPivot = false }: ProjectCardProps) {
+  const isLinked = !!href;
+  const Wrapper = isLinked ? 'a' : 'div';
+  const wrapperProps = isLinked ? { href, 'aria-label': title } : {};
+
   return (
-    <div className="relative group cursor-pointer" style={{ padding: '4px 0' }}>
+    <Wrapper className="relative group cursor-pointer block no-underline" style={{ padding: '4px 0' }} {...wrapperProps}>
       {hasArrow && (
         <span
           className="absolute transition-transform duration-150 ease-out group-hover:translate-x-1 group-hover:-translate-y-1"
@@ -54,6 +59,6 @@ export function ProjectCard({ title, meta, description, hasArrow = true, isPivot
       >
         {description}
       </div>
-    </div>
+    </Wrapper>
   );
 }

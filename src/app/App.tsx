@@ -1,7 +1,40 @@
+import { useState } from 'react';
 import { Logo } from './components/Logo';
 import { ChatModule } from './components/ChatModule';
 import { ProjectCard } from './components/ProjectCard';
 import { AlternatingText } from './components/AlternatingText';
+import { GetInTouch } from './components/GetInTouch';
+import { socialLinks, contentLinks, projects } from './config/content';
+
+function CopyEmail() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText('atton@atton.ai');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <button
+      onClick={handleCopy}
+      className="group flex items-baseline gap-0 cursor-pointer"
+      style={{
+        background: 'transparent',
+        border: 'none',
+        padding: 0,
+        marginTop: '4px',
+      }}
+    >
+      <span
+        className="transition-transform duration-150 ease-out group-hover:translate-x-1"
+        style={{ fontSize: '0.87rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}
+      >
+        {copied ? 'Copied' : 'Copy email'}
+      </span>
+    </button>
+  );
+}
 
 export default function App() {
   return (
@@ -74,71 +107,32 @@ export default function App() {
             borderBottom: 'var(--border-w) solid var(--border)'
           }}
         >
-          <a 
-            href="#"
-            className="no-underline hover:underline"
-            style={{ 
-              color: 'var(--text)',
-              textDecorationOffset: '3px'
-            }}
-          >
-            Get in Touch
-          </a>
+          <GetInTouch />
         </div>
 
         {/* ROW 2: SOCIAL / LINKS */}
-        <div 
-          className="flex items-end justify-start px-[22px] py-5 min-h-14"
-          style={{
-            borderRight: 'var(--border-w) solid var(--border)',
-            borderBottom: 'var(--border-w) solid var(--border)'
-          }}
-        >
-          <a
-            href="#"
-            className="no-underline group inline-flex items-baseline gap-[3px]"
-            style={{ color: 'var(--text)' }}
+        {socialLinks.map(({ label, href, external }) => (
+          <div
+            key={label}
+            className="flex items-end justify-start px-[22px] py-5 min-h-14"
+            style={{
+              borderRight: 'var(--border-w) solid var(--border)',
+              borderBottom: 'var(--border-w) solid var(--border)'
+            }}
           >
-            <span className="transition-transform duration-150 ease-out group-hover:translate-x-1">LinkedIn</span>
-            <span className="text-[0.75em] opacity-50 transition-transform duration-150 ease-out group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
-          </a>
-        </div>
-        
-        <div 
-          className="flex items-end justify-start px-[22px] py-5 min-h-14"
-          style={{
-            borderRight: 'var(--border-w) solid var(--border)',
-            borderBottom: 'var(--border-w) solid var(--border)'
-          }}
-        >
-          <a
-            href="#"
-            className="no-underline group inline-flex items-baseline gap-[3px]"
-            style={{ color: 'var(--text)' }}
-          >
-            <span className="transition-transform duration-150 ease-out group-hover:translate-x-1">GitHub</span>
-            <span className="text-[0.75em] opacity-50 transition-transform duration-150 ease-out group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
-          </a>
-        </div>
-        
-        <div 
-          className="flex items-end justify-start px-[22px] py-5 min-h-14"
-          style={{
-            borderRight: 'var(--border-w) solid var(--border)',
-            borderBottom: 'var(--border-w) solid var(--border)'
-          }}
-        >
-          <a
-            href="#"
-            className="no-underline group inline-flex items-baseline gap-[3px]"
-            style={{ color: 'var(--text)' }}
-          >
-            <span className="transition-transform duration-150 ease-out group-hover:translate-x-1">Medium</span>
-            <span className="text-[0.75em] opacity-50 transition-transform duration-150 ease-out group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
-          </a>
-        </div>
-        
-        <div 
+            <a
+              href={href}
+              className="no-underline group inline-flex items-baseline gap-[3px]"
+              style={{ color: 'var(--text)' }}
+              {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+            >
+              <span className="transition-transform duration-150 ease-out group-hover:translate-x-1">{label}</span>
+              <span className="text-[0.75em] opacity-50 transition-transform duration-150 ease-out group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
+            </a>
+          </div>
+        ))}
+
+        <div
           className="hidden lg:block min-h-14"
           style={{
             borderRight: 'var(--border-w) solid var(--border)',
@@ -146,40 +140,26 @@ export default function App() {
             padding: '20px 22px'
           }}
         />
-        
-        <div 
-          className="flex items-end justify-start px-[22px] py-5 min-h-14"
-          style={{
-            borderRight: 'var(--border-w) solid var(--border)',
-            borderBottom: 'var(--border-w) solid var(--border)'
-          }}
-        >
-          <a
-            href="#"
-            className="no-underline group inline-flex items-baseline gap-[3px]"
-            style={{ color: 'var(--text)' }}
+
+        {contentLinks.map(({ label, href }) => (
+          <div
+            key={label}
+            className="flex items-end justify-start px-[22px] py-5 min-h-14"
+            style={{
+              borderRight: 'var(--border-w) solid var(--border)',
+              borderBottom: 'var(--border-w) solid var(--border)'
+            }}
           >
-            <span className="transition-transform duration-150 ease-out group-hover:translate-x-1">LMA Framework</span>
-            <span className="text-[0.75em] opacity-50 transition-transform duration-150 ease-out group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
-          </a>
-        </div>
-        
-        <div 
-          className="flex items-end justify-start px-[22px] py-5 min-h-14"
-          style={{
-            borderRight: 'var(--border-w) solid var(--border)',
-            borderBottom: 'var(--border-w) solid var(--border)'
-          }}
-        >
-          <a
-            href="#"
-            className="no-underline group inline-flex items-baseline gap-[3px]"
-            style={{ color: 'var(--text)' }}
-          >
-            <span className="transition-transform duration-150 ease-out group-hover:translate-x-1">Writing</span>
-            <span className="text-[0.75em] opacity-50 transition-transform duration-150 ease-out group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
-          </a>
-        </div>
+            <a
+              href={href}
+              className="no-underline group inline-flex items-baseline gap-[3px]"
+              style={{ color: 'var(--text)' }}
+            >
+              <span className="transition-transform duration-150 ease-out group-hover:translate-x-1">{label}</span>
+              <span className="text-[0.75em] opacity-50 transition-transform duration-150 ease-out group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
+            </a>
+          </div>
+        ))}
 
         {/* ROW 3: AI CHAT MODULE + NARRATIVE */}
         <div 
@@ -221,121 +201,25 @@ export default function App() {
           </div>
         </div>
 
-        {/* ROW 4: SYSTEM MODULES */}
-        <div 
-          className="col-span-2 px-[26px] py-6 min-h-14"
-          style={{
-            borderRight: 'var(--border-w) solid var(--border)',
-            borderBottom: 'var(--border-w) solid var(--border)'
-          }}
-        >
-          <ProjectCard
-            title="Pivot"
-            meta="System · Career Navigation · 2026"
-            description="A structured way to think through a career shift when the path isn't obvious anymore. Built on persistent context and reflection, not generic advice."
-            isPivot={true}
-          />
-        </div>
-        
-        <div 
-          className="col-span-2 px-[26px] py-6 min-h-14"
-          style={{
-            borderRight: 'var(--border-w) solid var(--border)',
-            borderBottom: 'var(--border-w) solid var(--border)'
-          }}
-        >
-          <ProjectCard
-            title="Therapeutic Co-pilot"
-            meta="System · Reflection · 2026"
-            description="A reflective system for understanding direction, resistance, and alignment — without turning it into therapy theatre."
-          />
-        </div>
-
-        {/* ROW 5: FOUNDATION + FUTURE */}
-        <div 
-          className="col-span-2 px-[26px] py-6 min-h-14"
-          style={{
-            borderRight: 'var(--border-w) solid var(--border)',
-            borderBottom: 'var(--border-w) solid var(--border)'
-          }}
-        >
-          <ProjectCard
-            title="Language Memory Architecture"
-            meta="Foundation · BCLP · Open"
-            description="Documents define system behaviour and maintain context over time. The foundation layer for structured AI interaction."
-          />
-        </div>
-        
-        <div 
-          className="col-span-2 px-[26px] py-6 min-h-14"
-          style={{
-            borderRight: 'var(--border-w) solid var(--border)',
-            borderBottom: 'var(--border-w) solid var(--border)'
-          }}
-        >
-          <ProjectCard
-            title="Aten OS"
-            meta="Forthcoming · 2026"
-            description="Professional AI interface. Modes, memory, structured interaction."
-          />
-        </div>
-        
-        <div 
-          className="col-span-2 px-[26px] py-6 min-h-14"
-          style={{
-            borderRight: 'var(--border-w) solid var(--border)',
-            borderBottom: 'var(--border-w) solid var(--border)'
-          }}
-        >
-          <ProjectCard
-            title="Strategist"
-            meta="System · Decision Support · 2026"
-            description="Decision support for complex situations where clarity matters more than speed. Maps trade-offs, surfaces blind spots, tracks reasoning over time."
-          />
-        </div>
-        
-        <div 
-          className="col-span-2 px-[26px] py-6 min-h-14"
-          style={{
-            borderRight: 'var(--border-w) solid var(--border)',
-            borderBottom: 'var(--border-w) solid var(--border)'
-          }}
-        >
-          <ProjectCard
-            title="Boundary Condition Language"
-            meta="Governance · Open"
-            description="Structured constraints that shape how AI reasons within defined boundaries."
-          />
-        </div>
-
-        {/* ROW 6: FOUNDING USERS + WRITING */}
-        <div 
-          className="col-span-2 md:col-span-3 px-[26px] py-6 min-h-14"
-          style={{
-            borderRight: 'var(--border-w) solid var(--border)',
-            borderBottom: 'var(--border-w) solid var(--border)'
-          }}
-        >
-          <ProjectCard
-            title="Founding Users"
-            meta="Limited cohort"
-            description="Early access to the system. Direct feedback loop."
-          />
-        </div>
-        
-        <div 
-          className="col-span-2 md:col-span-3 px-[26px] py-6 min-h-14"
-          style={{
-            borderRight: 'var(--border-w) solid var(--border)',
-            borderBottom: 'var(--border-w) solid var(--border)'
-          }}
-        >
-          <ProjectCard
-            title="Writing"
-            meta="Medium · Essays"
-            description="Thinking about AI, identity, and what happens when your industry disappears."
-          />
-        </div>
+        {/* ROWS 4–6: PROJECT CARDS */}
+        {projects.map(({ cols, title, href, meta, description, isPivot }) => (
+          <div
+            key={title}
+            className={`${cols} px-[26px] py-6 min-h-14`}
+            style={{
+              borderRight: 'var(--border-w) solid var(--border)',
+              borderBottom: 'var(--border-w) solid var(--border)'
+            }}
+          >
+            <ProjectCard
+              title={title}
+              href={href}
+              meta={meta}
+              description={description}
+              isPivot={isPivot}
+            />
+          </div>
+        ))}
 
         {/* ROW 7: FOOTER */}
         <div 
@@ -358,9 +242,7 @@ export default function App() {
           <div style={{ fontSize: '0.87rem', fontWeight: '500', color: 'var(--text)' }}>
             Inquiries
           </div>
-          <div style={{ fontSize: '0.87rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
-            hello@atton.ai
-          </div>
+          <CopyEmail />
         </div>
         
         <div 
