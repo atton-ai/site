@@ -75,29 +75,26 @@ export default function App() {
           }}
         />
         
-        <div 
-          className="flex items-center gap-[14px] px-[22px] py-5 min-h-14"
+        {/* Founding Access CTA hidden for now; layout slot preserved intentionally */}
+        <div
+          className="flex items-center px-[22px] py-5 min-h-14"
           style={{
             borderRight: 'var(--border-w) solid var(--border)',
             borderBottom: 'var(--border-w) solid var(--border)'
           }}
         >
-          <button 
-            className="border-none cursor-pointer transition-opacity hover:opacity-85"
+          <button
             style={{
+              visibility: 'hidden',
               background: '#000',
-              color: '#fff',
               padding: '9px 20px',
-              fontFamily: 'var(--font-body)',
               fontSize: '0.85rem',
-              fontWeight: '500',
-              letterSpacing: '0.01em',
-              borderRadius: '2px'
+              borderRadius: '2px',
+              border: 'none',
             }}
           >
             Founding Access
           </button>
-          <span style={{ fontSize: '1.1rem', color: 'var(--text-secondary)' }}>→</span>
         </div>
         
         <div 
