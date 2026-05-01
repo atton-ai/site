@@ -7,14 +7,14 @@ export type NavLink = {
 };
 
 export const socialLinks: NavLink[] = [
-  { label: 'LinkedIn',  href: '#', external: true },
-  { label: 'GitHub',    href: '#', external: true },
-  { label: 'Medium',    href: '#', external: true },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/attonai/', external: true },
+  { label: 'GitHub', href: 'https://github.com/atton-ai', external: true },
+  { label: 'Medium', href: 'https://medium.com/@attonai', external: true },
 ];
 
 export const contentLinks: NavLink[] = [
-  { label: 'LMA Framework', href: '/articles/language-memory-architecture' },
-  { label: 'Writing',       href: '/articles/writing' },
+  { label: 'LMA Framework', href: '/articles/language-memory-architecture', external: false },
+  { label: 'Writing', href: 'https://medium.com/@attonai', external: true },
 ];
 
 // ─── Project cards ────────────────────────────────────────────────────────────
@@ -26,6 +26,7 @@ export type Project = {
   description: string;
   cols: string;          // Tailwind col-span classes for the grid cell
   isPivot?: boolean;
+  external?: boolean;
 };
 
 export const projects: Project[] = [
@@ -81,9 +82,10 @@ export const projects: Project[] = [
   },
   {
     title: 'Writing',
-    href: '/articles/writing',
+    href: 'https://medium.com/@attonai',
     meta: 'Medium · Essays',
     description: 'Thinking about AI, identity, and what happens when your industry disappears.',
     cols: 'col-span-2 md:col-span-3',
+    external: true,
   },
 ];

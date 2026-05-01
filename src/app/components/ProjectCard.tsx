@@ -5,12 +5,16 @@ interface ProjectCardProps {
   description: string;
   hasArrow?: boolean;
   isPivot?: boolean;
+  disabled?: boolean;
+  external?: boolean;
 }
 
-export function ProjectCard({ title, href, meta, description, hasArrow = true, isPivot = false }: ProjectCardProps) {
-  const isLinked = !!href;
+export function ProjectCard({ title, href, meta, description, hasArrow = true, isPivot = false, disabled = false, external = false }: ProjectCardProps) {
+  const isLinked = !!href && !disabled;
   const Wrapper = isLinked ? 'a' : 'div';
-  const wrapperProps = isLinked ? { href, 'aria-label': title } : {};
+  const wrapperProps = isLinked
+    ? { href, 'aria-label': title, ...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {}) }
+    : {};
 
   return (
     <Wrapper className="relative group cursor-pointer block no-underline" style={{ padding: '4px 0' }} {...wrapperProps}>

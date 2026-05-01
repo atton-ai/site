@@ -3,9 +3,8 @@ import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 
-export default defineConfig({
-  // Base path for ReactPress deployment — update to match the plugin's app directory path
-  base: '/react-app/',
+export default defineConfig(({ command }) => ({
+  base: command === 'build' ? '/react-app/' : '/',
 
   build: {
     outDir: 'dist',
@@ -33,4 +32,4 @@ export default defineConfig({
       '/api': 'http://localhost:3001',
     },
   },
-})
+}))

@@ -4,13 +4,15 @@ import { ChatModule } from './components/ChatModule';
 import { ProjectCard } from './components/ProjectCard';
 import { AlternatingText } from './components/AlternatingText';
 import { GetInTouch } from './components/GetInTouch';
-import { socialLinks, contentLinks, projects } from './config/content';
+import { cards } from '../config/cards';
+import { links } from '../config/links';
+import { socialLinks, contentLinks } from './config/content';
 
 function CopyEmail() {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText('atton@atton.ai');
+    navigator.clipboard.writeText(links.email);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -138,7 +140,7 @@ export default function App() {
           }}
         />
 
-        {contentLinks.map(({ label, href }) => (
+        {contentLinks.map(({ label, href, external }) => (
           <div
             key={label}
             className="flex items-end justify-start px-[22px] py-5 min-h-14"
@@ -151,6 +153,7 @@ export default function App() {
               href={href}
               className="no-underline group inline-flex items-baseline gap-[3px]"
               style={{ color: 'var(--text)' }}
+              {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
             >
               <span className="transition-transform duration-150 ease-out group-hover:translate-x-1">{label}</span>
               <span className="text-[0.75em] opacity-50 transition-transform duration-150 ease-out group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
@@ -199,7 +202,7 @@ export default function App() {
         </div>
 
         {/* ROWS 4–6: PROJECT CARDS */}
-        {projects.map(({ cols, title, href, meta, description, isPivot }) => (
+        {cards.map(({ cols, title, href, meta, description, isPivot, disabled, external }) => (
           <div
             key={title}
             className={`${cols} px-[26px] py-6 min-h-14`}
@@ -214,6 +217,8 @@ export default function App() {
               meta={meta}
               description={description}
               isPivot={isPivot}
+              disabled={disabled}
+              external={external}
             />
           </div>
         ))}
