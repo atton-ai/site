@@ -6,7 +6,6 @@ import { AlternatingText } from './components/AlternatingText';
 import { GetInTouch } from './components/GetInTouch';
 import { cards } from '../config/cards';
 import { links } from '../config/links';
-import { socialLinks, contentLinks } from './config/content';
 
 function CopyEmail() {
   const [copied, setCopied] = useState(false);
@@ -110,7 +109,12 @@ export default function App() {
         </div>
 
         {/* ROW 2: SOCIAL / LINKS */}
-        {socialLinks.map(({ label, href, external }) => (
+        {[
+          { label: 'LinkedIn', href: links.linkedin, external: true },
+          { label: 'GitHub', href: links.github, external: true },
+          { label: 'Medium', href: links.medium, external: true },
+          { label: 'X', href: links.x, external: true },
+        ].map(({ label, href, external }) => (
           <div
             key={label}
             className="flex items-end justify-start px-[22px] py-5 min-h-14"
@@ -140,7 +144,10 @@ export default function App() {
           }}
         />
 
-        {contentLinks.map(({ label, href, external }) => (
+        {[
+          { label: 'LMA Framework', href: links.lmaFramework, external: false },
+          { label: 'Writing', href: links.writing, external: true },
+        ].map(({ label, href, external }) => (
           <div
             key={label}
             className="flex items-end justify-start px-[22px] py-5 min-h-14"
