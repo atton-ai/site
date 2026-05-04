@@ -145,7 +145,6 @@ export default function App() {
         />
 
         {[
-          { label: 'LMA Framework', href: links.lmaFramework, external: false },
           { label: 'Writing', href: links.writing, external: true },
         ].map(({ label, href, external }) => (
           <div
