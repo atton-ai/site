@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Logo } from './components/Logo';
-import { ChatModule } from './components/ChatModule';
 import { ProjectCard } from './components/ProjectCard';
 import { AlternatingText } from './components/AlternatingText';
 import { GetInTouch } from './components/GetInTouch';
@@ -175,7 +174,8 @@ export default function App() {
             borderBottom: 'var(--border-w) solid var(--border)'
           }}
         >
-          <ChatModule />
+          {/* This container is intended for a WordPress shortcode-rendered AI Engine chatbot */}
+          <div id="ai-chat-container" />
         </div>
         
         <div
