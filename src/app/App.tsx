@@ -11,7 +11,7 @@ function CopyEmail() {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText('atton@atton.ai');
+    navigator.clipboard.writeText(links.email);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -208,7 +208,7 @@ export default function App() {
         </div>
 
         {/* ROWS 4–6: PROJECT CARDS */}
-        {cards.map(({ cols, title, href, meta, description, isPivot, external, disabled }) => (
+        {cards.map(({ cols, title, href, meta, description, isPivot, external }) => (
           <div
             key={title}
             className={`${cols} px-[26px] py-6 min-h-14`}
