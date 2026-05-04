@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Logo } from './components/Logo';
 import { ProjectCard } from './components/ProjectCard';
 import { AlternatingText } from './components/AlternatingText';
@@ -37,6 +37,28 @@ function CopyEmail() {
 }
 
 export default function App() {
+  useEffect(() => {
+    const target = document.getElementById('ai-chat-container');
+    if (!target) return;
+
+    const move = () => {
+      const source = document.getElementById('mwai-chatbot-source');
+      if (!source) return false;
+      target.appendChild(source);
+      source.style.display = 'block';
+      return true;
+    };
+
+    if (move()) return;
+
+    const observer = new MutationObserver(() => {
+      if (move()) observer.disconnect();
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div 
       className="min-h-screen"
@@ -56,8 +78,8 @@ export default function App() {
         }}
       >
         {/* ROW 1: IDENTITY */}
-        <div 
-          className="col-span-2 lg:col-span-3 flex items-center justify-start px-6 py-0 min-h-14"
+        <div
+          className="col-span-2 lg:col-span-3 flex items-center justify-start px-6 py-4 min-h-14"
           style={{
             borderRight: 'var(--border-w) solid var(--border)',
             borderBottom: 'var(--border-w) solid var(--border)'
@@ -174,8 +196,9 @@ export default function App() {
             borderBottom: 'var(--border-w) solid var(--border)'
           }}
         >
-          {/* This container is intended for a WordPress shortcode-rendered AI Engine chatbot */}
-          <div id="ai-chat-container" />
+          <div className="interface-chat-box">
+            <div id="ai-chat-container" />
+          </div>
         </div>
         
         <div
@@ -267,20 +290,23 @@ export default function App() {
           </div>
         </div>
         
-<div className="lg:col-span-2 px-[22px] py-5 min-h-14 flex flex-col justify-end"
-  style={{
-    borderRight: 'var(--border-w) solid var(--border)',
-    borderBottom: 'var(--border-w) solid var(--border)'
-  }}
->
-  <div style={{ fontSize: '0.87rem', fontWeight: '500', color: 'var(--text)' }}>
-    Atton Conrad
-  </div>
-
-  <div style={{ fontSize: '0.87rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
-    AI Systems Architect · Consultant · Human-Centred AI
-  </div>
-</div>
+        <div
+          className="lg:col-span-2 px-[22px] py-5 min-h-14"
+          style={{
+            borderRight: 'var(--border-w) solid var(--border)',
+            borderBottom: 'var(--border-w) solid var(--border)'
+          }}
+        >
+          <div style={{ fontSize: '0.87rem', fontWeight: '500', color: 'var(--text)' }}>
+            AI &amp; Cloud Architecture
+          </div>
+          <div style={{ fontSize: '0.87rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
+            Claude Certified Architect
+          </div>
+          <div style={{ fontSize: '0.87rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
+            Google Cloud Associate
+          </div>
+        </div>
       </div>
     </div>
   );

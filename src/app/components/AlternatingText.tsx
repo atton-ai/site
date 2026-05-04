@@ -16,11 +16,13 @@ export function AlternatingText() {
   }, []);
 
   return (
-    <div 
+    <div
       style={{
         fontSize: '1.05rem',
+        fontWeight: 600,
         color: 'var(--text)',
-        opacity: 0.6,
+        opacity: 0.75,
+        letterSpacing: '0.01em',
         transition: 'opacity 0.8s ease-in-out'
       }}
     >

@@ -58,10 +58,11 @@ export const cards = [
     cols: 'col-span-2',
   },
   {
-    title: 'Founding Users',
-    meta: 'Limited cohort',
-    description: 'Early access to the system. Direct feedback loop.',
-    href: links.foundingUsers,
+    title: 'Projects',
+    meta: 'Systems · Builds · Interfaces',
+    description:
+      'Selected systems and interfaces built across AI, automation, and structured interaction. Concrete implementations of how these ideas are applied in practice.',
+    href: '/projects',
     external: false,
     cols: 'col-span-2 md:col-span-3',
   },
