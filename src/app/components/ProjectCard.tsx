@@ -5,12 +5,11 @@ interface ProjectCardProps {
   description: string;
   hasArrow?: boolean;
   isPivot?: boolean;
-  disabled?: boolean;
   external?: boolean;
 }
 
-export function ProjectCard({ title, href, meta, description, hasArrow = true, isPivot = false, disabled = false, external = false }: ProjectCardProps) {
-  const isLinked = !!href && !disabled;
+export function ProjectCard({ title, href, meta, description, hasArrow = true, isPivot = false, external = false }: ProjectCardProps) {
+  const isLinked = !!href;
   const Wrapper = isLinked ? 'a' : 'div';
   const wrapperProps = isLinked
     ? { href, 'aria-label': title, ...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {}) }

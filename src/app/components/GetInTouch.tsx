@@ -34,7 +34,7 @@ export function GetInTouch() {
   if (state === 'submitted') {
     return (
       <span style={{ fontFamily: 'var(--font-body)', color: 'var(--text)', fontSize: '0.93rem' }}>
-        I'll be in touch.
+        Check your inbox
       </span>
     );
   }
